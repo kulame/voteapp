@@ -9,6 +9,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      console.log(window.global);
+      if (!window.global) {
+        window.global = window;
+        console.log('set global');
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
