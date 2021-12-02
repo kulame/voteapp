@@ -1,5 +1,3 @@
-import Logos from "components/atoms/logos";
-import Card from "components/organisms/card";
 import {
   BeakerIcon,
   BookmarkAltIcon,
@@ -11,14 +9,16 @@ import {
   LockClosedIcon,
   MenuIcon,
   PencilIcon,
-  PhotographIcon,
+  PhotographIcon
 } from "@heroicons/react/outline";
 import { QuestionMarkCircleIcon } from "@heroicons/react/solid";
 import Button from "components/atoms/button";
+import Logos from "components/atoms/logos";
 import CopyButton from "components/molecules/copy-button";
-
+import Card from "components/organisms/card";
+import { NearHandler } from "helper/tools";
+import { useEffect } from "react";
 import styles from "./app.module.css";
-
 const features = [
   {
     name: "Vite",
@@ -101,6 +101,12 @@ const features = [
 ];
 
 const App = (): JSX.Element => {
+  useEffect(() => {
+    const handler = new NearHandler();
+    //handler.build().then((item) => {
+    //  console.log(item);
+    //});
+  }, []);
   return (
     <main className={styles.main}>
       <header className={styles.header}>

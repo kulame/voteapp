@@ -1,13 +1,7 @@
-import {
-  connect,
-  ConnectConfig,
-  Contract,
-  keyStores,
-  Near,
-  WalletConnection
-} from "near-api-js";
-
-const CONTRACT_NAME = process.env.CONTRACT_NAME || "vote";
+import * as nearAPI from "near-api-js";
+import { ConnectConfig } from "near-api-js";
+const { keyStores, connect } = nearAPI;
+const CONTRACT_NAME = "citytoken.kula.testnet";
 
 const getConfig = (env) => {
   switch (env) {
@@ -74,37 +68,30 @@ interface NearHandlerConfig extends ConnectConfig {
   contractName: string;
 }
 
-class NearHandler {
-  config: NearHandlerConfig;
-  near: Near;
-  wallet: WalletConnection;
-  accountId: string;
-  contract: Contract;
-  static async build() {
-    const handler = new NearHandler();
-    handler.config = getConfig(process.env.NODE_ENV || "development");
-    handler.near = await connect(
-      Object.assign(
-        { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
-        handler.config
-      )
-    );
-    handler.wallet = new WalletConnection(handler.near, null);
-    handler.accountId = handler.wallet.getAccountId();
-    handler.contract = await new Contract(
-      handler.wallet.account(),
-      handler.config.contractName,
+export class NearHandler {
+  constructor() {}
+  //config: NearHandlerConfig;
+  //near: Near;
+  //wallet: WalletConnection;
+  //accountId: string;
+  //.contract: Contract;
+  //async build() {
+  //this.config = getConfig("testnet");
+  //const keyStore = new keyStores.InMemoryKeyStore();
+  //this.config.keyStore = keyStore;
+  //console.log(this.config);
+  //this.near = await connect(this.config);
+  /*
+    this.wallet = new WalletConnection(this.near, null);
+    this.accountId = this.wallet.getAccountId();
+    this.contract = await new Contract(
+      this.wallet.account(),
+      this.config.contractName,
       {
         viewMethods: [],
         changeMethods: [],
       }
     );
-  }
-
-  login() {
-    this.wallet.requestSignIn(this.config.contractName);
-  }
-  logout() {
-    this.wallet.signOut();
-  }
+    */
+  //}
 }
